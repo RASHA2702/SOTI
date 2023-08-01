@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const studentData=[{rollno:"1",name:"kishor",emailId:"xyz@gmail.com"},
+        {rollno:"2",name:"kiran",emailId:"zxy@gmail.com"},
+        {rollno:"3",name:"palan",emailId:"zoy@gmail.com"}];
+        var request=window.indexedDB.open("DataBase",1);
+        request.onupgradeneeded=function(event)
+        {
+            var db=event.target.result;
+            var objectStore=db.createObjectStore("Student",{keyPath:"rollno"});
+            for (  var i in studentData)  {
+                objectStore.add(studentData[i]);
+            }
+        };
+    function read() {
+       var transaction = db.transaction(["student"]);
+       var objectStore = transaction.objectStore("student");
+       var request = objectStore.get("03");
+       
+       request.onerror = function(event) {
+          alert("Unable to retrieve data from database!");
+       };
+    }
+    function readAll() {
+       var objectStore = db.transaction("student").objectStore("student");
+       objectStore.openCursor().onsuccess = function(event) {
+          var cursor = event.target.result;
+          if (cursor) {
+             alert("rollno " + cursor.key + " is " + cursor.value.name + ", Age: " + cursor.value.age + ", Email: " + cursor.value.email);
+             cursor.continue();
+          } else {
+             alert("No more entries!");
+          }
+       };
+    }
+    function add() {
+       var request = db.transaction(["student"], "readwrite")
+       .objectStore("student")
+       .add({ rollno: "05", name: "Jenny", age: 19, email: "jenny@abc.com"});
+       request.onsuccess = function(event) {
+          alert("Jenny has been added to your database.");
+       };}
+    </script>
+</head>
+<body>
+    <button onclick="read()">read</button>
+    <button onclick="readall()">Read All</button>
+    <button onclick="add()">Add</button>
+    <button onclick="remove()">Remove</button>
+</body>
+</html>

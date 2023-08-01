@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function show(){
+            var name=sessionStorage.getItem("nameKey");
+            var rollNo=sessionStorage.getItem("rollKey");
+            var age=sessionStorage.getItem("ageKey");
+            var city=sessionStorage.getItem("cityKey");
+            var email=sessionStorage.getItem("emailKey");
+            document.getElementById("fname").value=name;
+            document.getElementById("roll").value=rollNo;
+            document.getElementById("age").value=age;
+            document.getElementById("city").value=city;
+            document.getElementById("email").value=email;
+        }
+        if(typeof(Storage)!=="undefined")
+        {
+            function save()
+            {
+                var Name=document.getElementById("fname").value;
+                var Roll=document.getElementById("roll").value;
+                var Age=document.getElementById("age").value;
+                var City=document.getElementById("city").value;
+                var Email=document.getElementById("email").value;
+                sessionStorage.setItem("nameKey",Name);
+                sessionStorage.setItem("rollKey",Roll);
+                sessionStorage.setItem("ageKey",Age);
+                sessionStorage.setItem("cityKey",City);
+                sessionStorage.setItem("emailKey",Email);
+                alert("Stored in Session Storage");
+            }
+        }
+        else{
+            alert(" Not Supported storage");
+        }
+    </script>
+</head>
+<body>
+    <form >
+        <fieldset style="height: 250px;">
+        <legend>Student details</legend>
+        <label for="fname">Name:</label>
+        <input type="text" name="name" id="fname" />
+        <br>
+        <label for="roll" >RollNo:</label>
+        <input type="text" name="rlno" id="roll" ><br>
+        <label for="age">Age:</label>
+        <input type="number" name="stAge" id="age"><br>
+        <label for="city">City:</label>
+        <input type="text" name="cname" id="city" ><br>
+        <label for="email">Email id:</label>
+        <input type="email" name="semail" id="email" ><br>
+        <input type="submit" value="savedata" onclick="save()">
+        <input type="button" value="showdata" onclick="show()">
+    </fieldset>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function show(){
+                var Name=localStorage.setItem("fnameKey");
+                var Age=localStorage.setItem("ageKey");
+                var city=localStorage.setItem("cityKey");
+                var Email=localStorage.setItem("emailKey");
+                var Rollno=localStorage.setItem("rollKey");
+                document.getElementById("fname").value = Name;
+                document.getElementById("age").value = Age;
+                document.getElementById("city").value = City;
+                document.getElementById("email").value = Email;
+                document.getElementById("roll").value =Rollno;
+                alert("fnameKey,ageKey,cityKey,emailKey,rollKey");
+            }
+            function remove(){
+                localStorage.removeItem("fnameKey");
+                localStorage.removeItem("rollKey");
+                alert("fnameKey\r\nrollKey\r\n These keys are deleted")
+            }
+        if(typeof(Storage) !== undefined){
+            function save(){
+                var Name=document.getElementById("fname").value;
+                var Age=document.getElementById("age").value;
+                var City=document.getElementById("city").value;
+                var Email=document.getElementById("email").value;
+                var Rollno=document.getElementById("roll").value;
+                localStorage.setItem("fnameKey",Name);
+                localStorage.setItem("ageKey",Age);
+                localStorage.setItem("cityKey",city);
+                localStorage.setItem("emailKey",Email);
+                localStorage.setItem("rollKey",Rollno);
+                alert("Stored in local");
+            }
+        }
+        else{
+            alert("Not supported storage");
+        }
+    </script>
+    <form>
+        <fieldset style="height: 450px;">
+        <h1>Student Details </h1>
+        <h2>
+    <label for="name">Name:</label>
+    <input id="fname" type="text" placeholder="Type your name">
+    <br>
+    <br>
+    <label for="age">Age</label>
+    <input id="age" type="number" placeholder="Type your age">
+    <br>
+    <br>
+    <label for="city">City:</label>
+    <input id="city" type="text" placeholder="Type your City">
+    <br>
+    <br>
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="Type your Email">
+    <br>
+    <br>
+    <label for="roll">Roll no:</label>
+    <input id="roll" type="text" placeholder="Type your Rollno">
+    <input type="submit" value="savedata" onclick="save()">
+    <input type="button" value="showdata" onclick="show()">
+    <input type="button" value="removedata" onclick="remove()">
+    </h2>
+    </fieldset>
+    </form>
+</body>
+</html>

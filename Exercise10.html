@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LineOnCanvas()
+        {
+            var context=document.getElementById("c1");
+            var c=context.getContext("2d");
+            c.moveTo(50,150);
+            c.lineTo(50,250);
+            c.stroke();
+        }
+        function ArcOnCanvas()
+        {
+            var context=document.getElementById("c1");
+            var c=context.getContext("2d");
+            c.lineWidth=5;
+            c.strokeStyle="green";
+            // var grd=c.createLinearGradient(0,0,context.width,context.height);
+            // grd.addColorStop(0.5,white);
+            // grd.addColorStop(1,green);
+            // grd.addColorStop(1.0,blue);
+            c.fillStyle="red";
+            c.fill();
+            c.arc(150,100,70,0,2*Math.PI,false);
+            c.stroke();
+        }
+        function Rect()
+        {
+            var context=document.getElementById("c1");
+            var c=context.getContext("2d");
+            c.lineWidth=5;
+            c.strokeStyle="green";
+            c.fillStyle="red";
+            c.fill();
+            c.rect(200,50,200,50);
+            c.stroke();
+        }
+        function grad()
+        {
+            var context=document.getElementById("c1");
+            var c=context.getContext("2d");
+            c.lineWidth=5;
+            c.strokeStyle="green";
+            var grd=c.createLinearGradient(0,0,context.width,context.height);
+            grd.addColorStop(0.25,"white");
+            grd.addColorStop(1,"green");
+            grd.addColorStop(1.0,"blue");
+            c.fillStyle=grd;
+            c.fill();
+            c.rect(220,100,220,100);
+            c.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="500" height="400"></canvas>
+    <button onclick="LineOnCanvas()">Line</button>
+    <button onclick="ArcOnCanvas()">Arc</button>
+    <button onclick="Rect()">Rectangle</button>
+    <button onclick="grad()">Gradient</button>
+</body>
+</html>
